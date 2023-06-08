@@ -1,4 +1,4 @@
-rootProject.name = 'HowFarIam'
+rootProject.name = 'The Place to Be'
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 include ':app'
 includeBuild('../node_modules/react-native-gradle-plugin')

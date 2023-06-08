@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "HowFarIam.app"
-               BlueprintName = "HowFarIam"
-               ReferencedContainer = "container:HowFarIam.xcodeproj">
+               BuildableName = "ThePlacetoBe.app"
+               BlueprintName = "ThePlacetoBe"
+               ReferencedContainer = "container:ThePlacetoBe.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "HowFarIamTests.xctest"
-               BlueprintName = "HowFarIamTests"
-               ReferencedContainer = "container:HowFarIam.xcodeproj">
+               BuildableName = "ThePlacetoBeTests.xctest"
+               BlueprintName = "ThePlacetoBeTests"
+               ReferencedContainer = "container:ThePlacetoBe.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "HowFarIam.app"
-            BlueprintName = "HowFarIam"
-            ReferencedContainer = "container:HowFarIam.xcodeproj">
+            BuildableName = "ThePlacetoBe.app"
+            BlueprintName = "ThePlacetoBe"
+            ReferencedContainer = "container:ThePlacetoBe.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "HowFarIam.app"
-            BlueprintName = "HowFarIam"
-            ReferencedContainer = "container:HowFarIam.xcodeproj">
+            BuildableName = "ThePlacetoBe.app"
+            BlueprintName = "ThePlacetoBe"
+            ReferencedContainer = "container:ThePlacetoBe.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
