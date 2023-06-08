@@ -6,7 +6,6 @@ import {
   View,
 } from "react-native";
 import InputSearch from "../InputSearch/InputSearch";
-import PoiList from "../Ranking/poisList";
 import GlobalRating from "../Rating/globalRating";
 import Rating from "../Rating/ratings";
 import Location from "../Location/location";

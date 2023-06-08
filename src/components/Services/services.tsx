@@ -16,7 +16,12 @@ import ServiceIcon from "../../assets/svg/serviceIcon";
 function ServicesScreen({ navigation }: any): JSX.Element {
   const { rating } = useRatingStore();
   const { population } = useLocationStore();
-  const data = rating?.pois?.service?.data;
+
+  const dataService = rating?.pois?.service?.data;
+  const dataFuel = rating?.pois?.fuel?.data;
+  const dataLeisure = rating?.pois?.leisure?.data;
+
+  const data = dataService!.concat(dataFuel!, dataLeisure!);
 
   return data && population ? (
     <ScrollView style={styles.container}>
@@ -32,10 +37,15 @@ function ServicesScreen({ navigation }: any): JSX.Element {
         <Text style={styles.title}>Services</Text>
       </View>
       <View style={styles.poisContainer}>
-      <PoiItem pois={data} name="Mairie(s)" type="townhall" />
+        <PoiItem pois={data} name="Cinéma(s)" type="cinema" />
+        <PoiItem pois={data} name="Public(s)" type="government" />
+        <PoiItem pois={data} name="Diplomatique(s)" type="diplomatic" />
+        <PoiItem pois={data} name="Discothèque(s)" type="nightclub" />
+        <PoiItem pois={data} name="Mairie(s)" type="townhall" />
         <PoiItem pois={data} name="Poste(s)" type="post_office" />
         <PoiItem pois={data} name="Police(s)" type="police" />
         <PoiItem pois={data} name="Pompier(s)" type="fire_station" />
+        <PoiItem pois={data} name="Autre(s)" type="undefined" />
       </View>
     </ScrollView>
   ) : (

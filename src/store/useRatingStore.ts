@@ -1,7 +1,5 @@
 import { create } from "zustand";
 import { TRating } from "../types/entities/rating.spec";
-import { TSecurityData } from "../types/entities/securityData.spec";
-import { TPoi } from "../types/entities/poi.spec";
 
 interface IRatingStore {
   rating: TRating | null;

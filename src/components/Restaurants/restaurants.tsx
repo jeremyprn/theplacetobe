@@ -35,6 +35,8 @@ function RestaurantsScreen({ navigation }: any): JSX.Element {
         <PoiItem pois={data} name="Fast Foods(s)" type="fast_food" />
         <PoiItem pois={data} name="Restaurant(s)" type="restaurant" />
         <PoiItem pois={data} name="Café(s)" type="cafe" />
+        <PoiItem pois={data} name="Glace(s)" type="ice_cream" />
+        <PoiItem pois={data} name="Autre(s)" type="food_court" />
       </View>
     </ScrollView>
   ) : (

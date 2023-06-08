@@ -13,69 +13,58 @@ function Rating({ navigation }: any): JSX.Element {
     startAngle: -Math.PI / 2,
   };
 
+  const security = rating?.security?.rating;
+  const services = rating?.pois?.service?.rating;
+  const shops = rating?.pois?.shop?.rating;
+  const healthcare = rating?.pois?.healthcare?.rating;
+  const restaurants = rating?.pois?.restaurant?.rating;
+  const education = rating?.pois?.education?.rating;
+
+
   return rating?.pois && rating.security ? (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.ratingContainer}
-        onPress={() => navigation.navigate("SecurityData")}
+        onPress={() => navigation.navigate("ShopsScreen")}
       >
-        <Text style={styles.ratingTitle}>Securité</Text>
-        <CircleChart rating={1} size={4} chartConfig={chartConfig} />
+        <Text style={styles.ratingTitle}>Commerces</Text>
+        <CircleChart rating={shops} size={4} chartConfig={chartConfig} />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.ratingContainer}
         onPress={() => navigation.navigate("HealthcareScreen")}
       >
         <Text style={styles.ratingTitle}>Santé</Text>
-        <CircleChart
-          rating={rating?.pois?.healthcare?.rating}
-          size={4}
-          chartConfig={chartConfig}
-        />
+        <CircleChart rating={healthcare} size={4} chartConfig={chartConfig} />
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.ratingContainer}
+        onPress={() => navigation.navigate("SecurityData")}
+      >
+        <Text style={styles.ratingTitle}>Securité</Text>
+        <CircleChart rating={security} size={4} chartConfig={chartConfig} />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.ratingContainer}
         onPress={() => navigation.navigate("ServicesScreen")}
       >
         <Text style={styles.ratingTitle}>Services</Text>
-        <CircleChart
-          rating={rating?.pois?.service?.rating}
-          size={4}
-          chartConfig={chartConfig}
-        />
+        <CircleChart rating={services} size={4} chartConfig={chartConfig} />
       </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.ratingContainer}
-        onPress={() => navigation.navigate("ShopsScreen")}
-      >
-        <Text style={styles.ratingTitle}>Commerces</Text>
-        <CircleChart
-          rating={rating?.pois?.shop?.rating}
-          size={4}
-          chartConfig={chartConfig}
-        />
-      </TouchableOpacity>
+
       <TouchableOpacity
         style={styles.ratingContainer}
         onPress={() => navigation.navigate("RestaurantsScreen")}
       >
         <Text style={styles.ratingTitle}>Restauration</Text>
-        <CircleChart
-          rating={rating?.pois?.restaurant?.rating}
-          size={4}
-          chartConfig={chartConfig}
-        />
+        <CircleChart rating={restaurants} size={4} chartConfig={chartConfig} />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.ratingContainer}
         onPress={() => navigation.navigate("EducationScreen")}
       >
         <Text style={styles.ratingTitle}>Éducation</Text>
-        <CircleChart
-          rating={rating?.pois?.education?.rating}
-          size={4}
-          chartConfig={chartConfig}
-        />
+        <CircleChart rating={education} size={4} chartConfig={chartConfig} />
       </TouchableOpacity>
     </View>
   ) : (

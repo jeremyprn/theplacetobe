@@ -1,7 +1,14 @@
 import { TPoi } from "../types/entities/poi.spec";
+import { TSecurityData } from "../types/entities/securityData.spec";
 
-const getSecurityByPop = (data: TPoi[], population: number): number => {
-  const rating = Number((data.length / population).toFixed(1));
+const getSecurityByPop = (
+  data: TSecurityData[],
+  population: number
+): number => {
+  const crimes = data.map((item) => Number(item.faits));
+  const totalCrimes = crimes.reduce((acc, curr) => acc + curr, 0);
+  const rating = Number(((100 * totalCrimes) / population! / 10).toFixed(1));
+  console.log(rating);
   if (rating >= 10) return 10;
   return rating;
 };

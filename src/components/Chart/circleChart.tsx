@@ -16,10 +16,24 @@ const CircleChart = (props: any) => {
         height={220 / size}
         strokeWidth={32 / size}
         radius={72 / size}
-        chartConfig={chartConfig}
+        chartConfig={{
+          ...chartConfig,
+          color: (opacity = 1) => {
+            if(rating/10 < 0.25){
+              return `rgba(180, 60, 60, ${opacity})`
+            }
+            else if(rating/10 < 0.75){
+              return `rgba(65, 160, 115, ${opacity})`
+            }
+            
+            return `rgba(65, 255, 180, ${opacity})`
+          },
+        }}
         hideLegend={true}
-      />    
-      <Text style={[{ fontSize: 48 / size}, styles.ratingOverlay]}>{rating}</Text>
+      />
+      <Text style={[{ fontSize: 48 / size }, styles.ratingOverlay]}>
+        {rating}
+      </Text>
       <LinearGradient
         colors={[
           "rgba(20, 20,21, 0)",

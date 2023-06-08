@@ -14,15 +14,22 @@ import { useEffect, useRef, useState } from "react";
 import getDistance from "../../helpers/getDistances";
 import { useLocationStore } from "../../store/useLocationStore";
 
+type TProps = {
+  pois: TPoi[];
+  type: string;
+  name: string;
+};
+
 function RankingItem(props: any): JSX.Element {
-  const pois: TPoi[] = props.pois;
-  const type: string = props.type;
-  const name: string = props.name;
+  const { pois, type, name }: TProps = props;
+  const poisType = pois.filter(
+    (item) => item.properties.type === type || item.properties.type_fr === type
+  );
 
   const [isOpen, setIsOpen] = useState(false);
+  const [poisSorted, setPoisSorted] = useState<TPoi[]>([]);
   const [poisList, setPoisList] = useState<TPoi[]>([]);
-  const [poisIndex, setPoisIndex] = useState<number>(8);
-  const [barValue, setBarValue] = useState(1);
+  const [barValue, setBarValue] = useState<number>(0);
   const animationValue = useRef(new Animated.Value(0)).current;
   const { location } = useLocationStore();
 
@@ -42,12 +49,12 @@ function RankingItem(props: any): JSX.Element {
 
   const handleToggle = () => {
     setPoisList(
-      pois
+      poisSorted
         .filter(
           (item) =>
             item.properties.type === type || item.properties.type_fr === type
         )
-        .slice(0, poisIndex)
+        .slice(0, 8)
     );
     Animated.timing(animationValue, {
       toValue: isOpen ? 0 : 1, // Détermine la valeur finale de l'animation
@@ -58,14 +65,14 @@ function RankingItem(props: any): JSX.Element {
   };
 
   const handleShowMore = () => {
-    setPoisIndex(poisIndex + 8);
+    const indexList = poisList.length + 8;
     setPoisList(
-      pois
+      poisSorted
         .filter(
           (item) =>
             item.properties.type === type || item.properties.type_fr === type
         )
-        .slice(0, poisIndex)
+        .slice(0, indexList)
     );
   };
 
@@ -82,9 +89,33 @@ function RankingItem(props: any): JSX.Element {
     Linking.openURL(url!);
   };
 
-  return barValue > 0 ? (
+  const sortPois = () => {
+    setPoisSorted(
+      pois.sort((a, b) => {
+        const distanceA = getDistance(location?.coordinates!, {
+          latitude: a.geometry?.coordinates[1]!,
+          longitude: a.geometry?.coordinates[0]!,
+        });
+        const distanceB = getDistance(location?.coordinates!, {
+          latitude: b.geometry?.coordinates[1]!,
+          longitude: b.geometry?.coordinates[0]!,
+        });
+        return Number(distanceA) - Number(distanceB);
+      })
+    );
+  };
+
+  useEffect(() => {
+    setBarValue(poisType.length / 3);
+    sortPois();
+  }, [poisType]);
+
+  return poisType.length > 0 ? (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.cardContainer} onPress={handleToggle}>
+      <TouchableOpacity
+        style={styles.cardContainer}
+        onPress={() => handleToggle()}
+      >
         <Text style={styles.title}>{name}</Text>
         <View style={styles.barContainer}>
           <ProgressBar
@@ -132,17 +163,15 @@ function RankingItem(props: any): JSX.Element {
               </TouchableOpacity>
             ))}
             {poisList.length >=
-            pois
-              .filter(
-                (item) =>
-                  item.properties.type === type ||
-                  item.properties.type_fr === type
-              )
-              .slice(0, poisIndex).length ? (
+            pois.filter(
+              (item) =>
+                item.properties.type === type ||
+                item.properties.type_fr === type
+            ).length ? (
               <></>
             ) : (
               <TouchableOpacity
-                onPress={handleShowMore}
+                onPress={() => handleShowMore()}
                 style={styles.showMoreButton}
               >
                 <Text style={styles.showMoreButtonText}>Voir plus...</Text>

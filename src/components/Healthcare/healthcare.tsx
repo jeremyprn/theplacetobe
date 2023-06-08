@@ -33,9 +33,12 @@ function HealthcareScreen({ navigation }: any): JSX.Element {
         <Text style={styles.title}>Santé</Text>
       </View>
       <View style={styles.poisContainer}>
+        <PoiItem pois={data} name="Médecin(s)" type="doctors" />
+        <PoiItem pois={data} name="Hôpital(aux)" type="hospital" />
+        <PoiItem pois={data} name="Clinique(s)" type="clinic" />
         <PoiItem pois={data} name="Pharmacie(s)" type="pharmacy" />
-        <PoiItem pois={data} name="Hôpital(s)" type="hospital" />
-        <PoiItem pois={data} name="Médecin(s)" type="doctor" />
+        <PoiItem pois={data} name="Dentiste(s)" type="dentist" />
+        <PoiItem pois={data} name="Maison(s) de retraite" type="nursing_home" />
       </View>
     </ScrollView>
   ) : (

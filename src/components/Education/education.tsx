@@ -38,6 +38,8 @@ function EducationScreen({ navigation }: any): JSX.Element {
         <PoiItem pois={data} name="Crèche(s)" type="kindergarten" />
         <PoiItem pois={data} name="Collège(s)" type="collège" />
         <PoiItem pois={data} name="Lycée(s)" type="lycée" />
+        <PoiItem pois={data} name="Université(s)" type="university" />
+        <PoiItem pois={data} name="Autre école(s)" type="school" />
       </View>
     </ScrollView>
   ) : (

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import poiRepository from "../repositories/poiRepository";
 import { useLocationStore } from "../store/useLocationStore";
 import { useRatingStore } from "../store/useRatingStore";
@@ -125,15 +125,16 @@ export default function usePoi() {
       const security = await securityDataRepository.getSecurityData(
         location?.city.code!
       );
+      const pop = security[security.length - 1].POP;
 
       setRating({
         ...rating,
         security: {
-          data: security,
-          rating: getSecurityByPop(security!, population!),
+          data: security!,
+          rating: getSecurityByPop(security!, pop!),
         },
       });
-      setPopulation(security[security.length - 1].POP);
+      setPopulation(pop);
     } catch (error) {
       console.error("Error retrieving securityData:", error);
     }
