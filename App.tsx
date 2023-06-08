@@ -12,6 +12,11 @@ import RestaurantsScreen from "./src/components/Restaurants/restaurants";
 const Stack = createNativeStackNavigator();
 
 function App(): JSX.Element {
+
+  if (!__DEV__) {
+    console.log = () => {};
+  }
+  
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -26,42 +31,42 @@ function App(): JSX.Element {
           name="SecurityData"
           component={SecurityList}
           options={{
-            headerShown: false
+            headerShown: false,
           }}
         />
         <Stack.Screen
           name="EducationScreen"
           component={EducationScreen}
           options={{
-            headerShown: false
+            headerShown: false,
           }}
         />
         <Stack.Screen
           name="HealthcareScreen"
           component={HealthcareScreen}
           options={{
-            headerShown: false
+            headerShown: false,
           }}
         />
         <Stack.Screen
           name="ServicesScreen"
           component={ServicesScreen}
           options={{
-            headerShown: false
+            headerShown: false,
           }}
         />
         <Stack.Screen
           name="ShopsScreen"
           component={ShopsScreen}
           options={{
-            headerShown: false
+            headerShown: false,
           }}
         />
         <Stack.Screen
           name="RestaurantsScreen"
           component={RestaurantsScreen}
           options={{
-            headerShown: false
+            headerShown: false,
           }}
         />
       </Stack.Navigator>

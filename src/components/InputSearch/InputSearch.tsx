@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     width: "100%",
     borderRadius: 9999,
     padding: 12,
+    color: "white",
   },
   citiesResultContainer: {
     display: "flex",
