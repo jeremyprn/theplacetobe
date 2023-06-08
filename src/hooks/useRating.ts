@@ -3,7 +3,17 @@ import poiRepository from "../repositories/poiRepository";
 import { useLocationStore } from "../store/useLocationStore";
 import { useRatingStore } from "../store/useRatingStore";
 import securityDataRepository from "../repositories/securityDataRepository";
-import { getFuelByPop, getHealthcareByPop, getRestaurantByPop, getShopByPop, getHistoricByPop, getLeisureByPop, getServiceByPop, getSecurityByPop, getEducationByPop } from "../helpers/getRatingByPop";
+import {
+  getFuelByPop,
+  getHealthcareByPop,
+  getRestaurantByPop,
+  getShopByPop,
+  getHistoricByPop,
+  getLeisureByPop,
+  getServiceByPop,
+  getSecurityByPop,
+  getEducationByPop,
+} from "../helpers/getRatingByPop";
 
 export default function usePoi() {
   const { location, population, setPopulation } = useLocationStore();
@@ -106,10 +116,7 @@ export default function usePoi() {
         data: restaurant,
         rating: getRestaurantByPop(restaurant!, population!),
       },
-
-
     };
-    console.log(pois)
     setRating({ ...rating, pois });
   };
 
@@ -134,14 +141,12 @@ export default function usePoi() {
 
   useEffect(() => {
     if (location?.city.code) {
-      console.log("[useEffect] in useSecurityData");
       handleSecurityData();
     }
   }, [location]);
 
   useEffect(() => {
     if (location && population) {
-      console.log("[useEffect] getAllPoi");
       getAllPoi();
     }
   }, [location, population]);

@@ -18,7 +18,7 @@ function SecurityList({ navigation }: any): JSX.Element {
   const { rating } = useRatingStore();
 
   const securityStats = (currentYearStats: TSecurityData) => {
-    const prevYearData: TSecurityData | undefined = rating?.security
+    const prevYearData: TSecurityData | undefined = rating?.security?.data
       ?.filter((item: TSecurityData) => item.annee === "21")
       .find((item: TSecurityData) => item.classe === currentYearStats.classe);
     const prevFaits = Number(prevYearData?.faits);
@@ -57,7 +57,7 @@ function SecurityList({ navigation }: any): JSX.Element {
         <Text style={styles.title}>Sécurité (en 2022)</Text>
       </View>
       <View style={styles.securityCardsContainer}>
-        {rating?.security.map((item: TSecurityData, index: number) => (
+        {rating?.security.data?.map((item: TSecurityData, index: number) => (
           <View key={index} style={styles.security}>
             {item.annee === "22" && Number(item.faits) > 1 ? (
               <View style={styles.securityCardContainer}>

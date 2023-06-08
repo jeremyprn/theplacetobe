@@ -1,8 +1,10 @@
 import locationRepository from "../repositories/locationRepository";
 import { useLocationStore } from "../store/useLocationStore";
+import { useRatingStore } from "../store/useRatingStore";
 
 export default function useLocation() {
-  const { location, setLocation } = useLocationStore();
+  const { location, setLocation, clearLocationState } = useLocationStore();
+  const { clearRatingState } = useRatingStore();
 
   const handleSearchCity = async (city: string) => {
     try {
@@ -14,9 +16,10 @@ export default function useLocation() {
   };
 
   const handleChangeLocation = async (city: any) => {
+    clearLocationState();
+    clearRatingState();
     try {
       const cities = await locationRepository.getCities(city.properties);
-      console.log(cities[0]);
       const cityBoundaries = await locationRepository.getCityBoundaries(
         city.properties
       );

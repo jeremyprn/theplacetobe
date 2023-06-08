@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { ActivityIndicator } from "react-native-paper";
 import PopulationIcon from "../../assets/svg/populationIcon";
 import { useLocationStore } from "../../store/useLocationStore";
+import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 
 function Location(): JSX.Element {
   const { location, handleLocation } = useLocation();
@@ -18,18 +19,36 @@ function Location(): JSX.Element {
       <Text numberOfLines={1} style={styles.street}>
         {location.position.housenumber} {location.position.street}
       </Text>
-      <Text numberOfLines={1} style={styles.city}>{location.position.city}</Text>
+      <Text numberOfLines={1} style={styles.city}>
+        {location.position.city}
+      </Text>
       <View style={styles.populationContainer}>
         <PopulationIcon />
-        <Text numberOfLines={1} style={styles.populationValue}>{population} habitants</Text>
+        <Text numberOfLines={1} style={styles.populationValue}>
+          {population} habitants
+        </Text>
       </View>
     </View>
   ) : (
-    <View style={styles.loadingContainer}>
-      <Text style={styles.city}>
-        <ActivityIndicator size="large" color="white" />
-      </Text>
-    </View>
+    <SkeletonPlaceholder backgroundColor="#141415" highlightColor="#242529" speed={1000}>
+      <View style={styles.locationContainer}>
+        <SkeletonPlaceholder.Item width={170} height={18} borderRadius={4} />
+
+        <SkeletonPlaceholder.Item
+          width={225}
+          height={28}
+          borderRadius={4}
+          marginTop={8}
+        />
+
+        <SkeletonPlaceholder.Item
+          width={100}
+          height={16}
+          borderRadius={4}
+          marginTop={8}
+        />
+      </View>
+    </SkeletonPlaceholder>
   );
 }
 

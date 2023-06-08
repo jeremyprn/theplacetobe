@@ -45,7 +45,7 @@ function InputSearch(props: any): JSX.Element {
       >
         <PositionIcon />
         <TextInput
-          placeholder="Changer la localisation..."
+          placeholder="Changer de localisation..."
           onChangeText={onInputTextChange}
           value={inputText}
           style={styles.inputSearch}
